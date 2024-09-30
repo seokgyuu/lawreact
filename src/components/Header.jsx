@@ -68,7 +68,7 @@ const Header = () => {
             {activeComponent === "ChatBot" && <Comant1 sendMessage={sendMessageToChatbot} />}
             {activeComponent === "Cal" && <Comant2 show={activeComponent === "Cal"} />} 
             {activeComponent === "기능3" && <Comant3 />}
-            {chatbotVisible && <ChatBot chatLog={chatbotMessages} addMessage={(sender, msg) => sendMessageToChatbot(msg)} />}
+            {chatbotVisible && <ChatBot chatLog={chatbotMessages} addMessage={sendMessageToChatbot} />}
         </header>
     );
 };

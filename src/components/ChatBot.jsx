@@ -6,7 +6,7 @@ const ChatBot = ({ chatLog, addMessage }) => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (userInput.trim()) {
-            addMessage("사용자", userInput); // 사용자 메시지 추가
+            addMessage(userInput); // 사용자 메시지 추가
             setUserInput(""); // 입력 필드 초기화
         }
     };
