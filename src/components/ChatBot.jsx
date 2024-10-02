@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const ChatBot = ({ chatLog, addMessage }) => {
     const [userInput, setUserInput] = useState("");
+    const chatLogRef = useRef(null); // chat log에 대한 참조 생성
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -11,10 +12,17 @@ const ChatBot = ({ chatLog, addMessage }) => {
         }
     };
 
+    // chatLog가 변경될 때마다 스크롤을 하단으로 이동
+    useEffect(() => {
+        if (chatLogRef.current) {
+            chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
+        }
+    }, [chatLog]);
+
     return (
         <div id="Chatbot">
             <h1>ChatBot</h1>
-            <div id="chat-log">
+            <div id="chat-log" ref={chatLogRef}>
                 {chatLog.map((msg, index) => (
                     <div key={index} className={msg.sender === "사용자" ? "user-message" : "ai-message"}>
                         <strong>{msg.sender}: </strong>
@@ -23,11 +31,11 @@ const ChatBot = ({ chatLog, addMessage }) => {
                 ))}
             </div>
             <form onSubmit={handleFormSubmit}>
-                <input
-                    type="text"
+                <textarea
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                     placeholder="메시지를 입력하세요"
+                    style={{ width: "70%", resize: "none" }}
                 />
                 <button type="submit">전송</button>
             </form>
