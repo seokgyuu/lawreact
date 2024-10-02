@@ -35,7 +35,6 @@ const ChatBot = ({ chatLog, addMessage }) => {
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                     placeholder="메시지를 입력하세요"
-                    style={{ width: "70%", resize: "none" }}
                 />
                 <button type="submit">전송</button>
             </form>
