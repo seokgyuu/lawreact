@@ -21,7 +21,6 @@ const ChatBot = ({ chatLog, addMessage }) => {
 
     return (
         <div id="Chatbot">
-            <h1>ChatBot</h1>
             <div id="chat-log" ref={chatLogRef}>
                 {chatLog.map((msg, index) => (
                     <div key={index} className={msg.sender === "사용자" ? "user-message" : "ai-message"}>

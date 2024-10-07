@@ -1,80 +1,81 @@
 #Chatbot {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.5s ease-in-out;
-
-  &.show {
-      max-height: 100vh;
-      padding: 10px;
-  }
-
-  h1 {
-      text-align: center;
-      color: #333;
-      font-size: 24px;
-      margin-bottom: 20px;
-  }
-
-  #chat-log {
-      height: 200px;
+    position: absolute;
+    top: 100px; /* Header 높이 */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: calc(100vh - 100px); /* 전체 화면에서 Header 높이 제외 */
+    background-color: white; /* 단순 배경 */
+    overflow: hidden;
+  
+    /* 채팅 로그 */
+    #chat-log {
+      flex-grow: 1;
       overflow-y: auto;
       padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background-color: white;
-      margin-bottom: 20px;
       font-size: 15px;
       line-height: 1.5;
-
+      background-color: white; /* 전체 배경과 동일하게 유지 */
+      margin-bottom: 20px;
+  
+      .user-message, .ai-message {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 20px;
+        max-width: 60%;
+        word-wrap: break-word;
+      }
+  
       .user-message {
-          text-align: right;
-          margin-bottom: 10px;
-
-          strong {
-              color: #000000; 
-          }
+        align-self: flex-end;
+        background-color: #d1e7dd;
+        text-align: right;
       }
-
+  
       .ai-message {
-          text-align: left; 
-          margin-bottom: 10px;
-
-          strong {
-              color: #000000; 
-          }
+        align-self: flex-start;
+        background-color: #f1f1f1;
+        text-align: left;
       }
-  }
-
-  form {
+    }
+  
+    /* 메시지 입력 폼 */
+    form {
       display: flex;
-      gap: 10px;
-
-      input {
-          flex-grow: 1;
-          padding: 10px;
-          border: 2px solid #ccc;
-          border-radius: 4px;
-          font-size: 13px;
+      padding: 10px;
+      background-color: white;
+      border-top: 1px solid #ddd;
+  
+      textarea {
+        flex-grow: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        background-color: #f1f1f1;
+        font-size: 14px;
+        resize: none;
+        outline: none;
+        height: 40px;
       }
-
+  
       button {
-          padding: 10px 15px;
-          background-color: #0a0000;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          font-size: 16px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-
-          &:hover {
-              background-color: #0a0000; 
-          }
+        margin-left: 10px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
       }
+    }
   }
-}
-
+  

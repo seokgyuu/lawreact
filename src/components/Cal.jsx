@@ -1,82 +1,89 @@
 import React, { useState } from "react";
 
 const Cal = ({ show }) => {
-    // 상태 변수 정의
-    const [hourlyWage, setHourlyWage] = useState(0); // 시급
-    const [hoursWorked, setHoursWorked] = useState(0); // 일일 근무 시간
-    const [weekDays, setWeekDays] = useState(0); // 일주일 근무일수
-    const [extraHours, setExtraHours] = useState(0); // 월 연장 근무시간
-    const [totalPay, setTotalPay] = useState(0); // 총 급여
-    const [calculationDetail, setCalculationDetail] = useState(""); // 계산식 설명
+    const [hourlyWage, setHourlyWage] = useState(10000); // 기본 시급 설정
+    const [hoursWorked, setHoursWorked] = useState(8); // 기본 일일 근무 시간
+    const [weekDays, setWeekDays] = useState(5); // 기본 일주일 근무일수
+    const [extraHours, setExtraHours] = useState(0); // 기본 월 연장 근무시간
+    const [totalPay, setTotalPay] = useState(0);
+    const [calculationDetail, setCalculationDetail] = useState("");
 
-    // 총 급여 계산 함수
     const calculatePay = () => {
-        // 주간 총 근무 시간 계산
-        const weeklyHours = hoursWorked * weekDays; 
-        // 주급 계산 (시급 * 주간 총 근무 시간)
-        const weeklyPay = hourlyWage * weeklyHours; 
-        // 연장 근무 수당 계산 (시급 * 월 연장 근무 시간)
-        const extraPay = hourlyWage * extraHours; 
-
-        // 주휴수당 계산 (주간 근무 시간이 15시간 초과 시)
+        const weeklyHours = hoursWorked * weekDays;
+        const weeklyPay = hourlyWage * weeklyHours;
+        const extraPay = hourlyWage * extraHours;
         let vacationPay = 0;
+
         if (weeklyHours >= 15) {
-            vacationPay = 8 * hourlyWage; // 주휴수당은 1일 소정 근로시간 8시간
+            vacationPay = 8 * hourlyWage;
         }
 
-        // 총 급여 계산
-        const total = weeklyPay + extraPay + vacationPay; 
-        setTotalPay(total); // 총 급여 상태 업데이트
+        const total = weeklyPay + extraPay + vacationPay;
+        setTotalPay(total);
 
-        // 계산식 설명 문자열 생성
         setCalculationDetail(`총 급여 = (주급: ${weeklyPay} 원) + (연장 수당: ${extraPay} 원) + (주휴수당: ${vacationPay} 원) = ${total} 원`);
     };
 
     return (
-        <section id="Cal" className={show ? "show" : ""}>
-            <div>
+        <section id="Cal" className={show ? "show show-result" : ""}>
+            <h1>월급 계산기</h1>
+            <div className="input-group">
                 <label>
-                    시급:
+                    시급 (원):
                     <input
                         type="number"
                         value={hourlyWage}
-                        onChange={(e) => setHourlyWage(Number(e.target.value))} // 시급 상태 업데이트
+                        onChange={(e) => setHourlyWage(Number(e.target.value))}
+                        placeholder="시급을 입력하세요"
                     />
+                    <span className="input-icon currency-won-icon"></span>
                 </label>
             </div>
-            <div>
+            <div className="input-group">
                 <label>
                     일일 근무 시간:
                     <input
                         type="number"
                         value={hoursWorked}
-                        onChange={(e) => setHoursWorked(Number(e.target.value))} // 일일 근무 시간 상태 업데이트
+                        onChange={(e) => setHoursWorked(Number(e.target.value))}
+                        placeholder="일일 근무 시간을 입력하세요"
                     />
+                    <span className="input-icon clock-icon"></span>
                 </label>
             </div>
-            <div>
+            <div className="input-group">
                 <label>
                     일주일 근무일수:
-                    <input
-                        type="number"
-                        value={weekDays}
-                        onChange={(e) => setWeekDays(Number(e.target.value))} // 일주일 근무일수 상태 업데이트
-                    />
+                    <div className="slider-container">
+                        <input
+                            type="range"
+                            min="1"
+                            max="7"
+                            value={weekDays}
+                            onChange={(e) => setWeekDays(Number(e.target.value))}
+                        />
+                        <span>{weekDays}일</span>
+                    </div>
+                    <span className="input-icon calendar-icon"></span>
                 </label>
             </div>
-            <div>
+            <div className="input-group">
                 <label>
                     월 연장 근무시간:
                     <input
                         type="number"
                         value={extraHours}
-                        onChange={(e) => setExtraHours(Number(e.target.value))} // 월 연장 근무시간 상태 업데이트
+                        onChange={(e) => setExtraHours(Number(e.target.value))}
+                        placeholder="월 연장 근무시간을 입력하세요"
                     />
+                    <span className="input-icon trending-up-icon"></span>
                 </label>
             </div>
-            <button onClick={calculatePay}>계산하기</button> {/* 총 급여 계산 버튼 */}
-            <h2>총 급여: {totalPay} 원</h2> {/* 총 급여 출력 */}
-            <p>{calculationDetail}</p> {/* 계산식 설명 출력 */}
+            <button onClick={calculatePay}>월급 계산하기</button>
+            <div className="result">
+                <h2>총 급여: {totalPay} 원</h2>
+                <p>{calculationDetail}</p>
+            </div>
         </section>
     );
 };

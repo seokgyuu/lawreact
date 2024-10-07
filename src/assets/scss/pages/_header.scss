@@ -1,78 +1,132 @@
 #header {
-    display: flex;
-    flex-direction: column; // 자식 요소들을 세로 방향으로 배치
-    align-items: center; // 자식 요소들을 중앙에 정렬
-    padding: 10px; // 상하좌우 
-    //background-color:;
-  
-    h1 {
-      margin-bottom: 60px; // h1태그 하단 여백
-      color: rgb(46, 45, 45);
-    }
-  
-    nav {
-      .nav-buttons {
-        display: flex; // 가로 정렬
-        justify-content: center; // 중앙정렬
-        gap: 30px; //20px 간격
-        list-style-type: none; // ul 요소의 기본리스트 스타일 제거
-        padding: 0; // ul 안쪽 여백제거
-  
-        li {
-          button {
-            background-color: #fafafa;
-            border: none; // 버튼 테두리
-            padding: 10px 20px;
-            border-radius: 5px; // 버튼 모소리 둥글게 만들기
-            cursor: pointer; // 포인트 모양 출력
-            transition: background-color 0.3s ease; // 배경색 변화 부드럽게 출력
-  
-            a { 
-              color: white;
-              text-decoration: none; // 링크 기본 밑줄 제거
-            }
-  
-            &:hover {
-              background-color: #e1ebe2; // 마우스를 버튼 위에 올렸을때 발생하는 스타일
-            }
-          }
-        }
-      }
-    }
-  }
-  @media (max-width:768px){
-    #header{
-      padding:10px;
-    }
-    h1{
-      margin-bottom:30px;
-    }
-    nav{
-      .nav-buttons{
-        gap:15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem;
+}
 
-        li{
-          button{
-            width:100%;
-            padding:15px;
-            font-size: 10px;
-          }
-        }
-      }
-    }
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo {
+  font-size: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #000000; /* 로고 색깔을 검정색으로 변경 */
+}
+
+.header__logo em {
+  font-size: 6px;
+  display: block;
+  color: #000000; /* em 태그도 검정색으로 변경 */
+}
+
+.header__nav li {
+  display: inline;
+}
+
+.header__nav li a {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 8px;
+  position: relative;
+}
+
+.header__nav li a::before {
+  content: '';
+  width: calc(100% - 16px);
+  height: 1px;
+  background-color: var(--black);
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  transform: scaleX(0);
+  transition: all 0.3s;
+}
+
+.header__nav li a:hover::before {
+  transform: scaleX(1);
+}
+
+.header__nav__mobile {
+  display: none;
+  width: 20px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.header__nav__mobile span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: var(--black);
+  margin-top: 6px;
+  position: relative;
+}
+
+.header__nav__mobile span::before {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background-color: var(--black);
+  position: absolute;
+  right: 0;
+  top: 5px;
+  transition: width 0.3s;
+}
+
+.header__nav__mobile span::after {
+  content: "";
+  width: 30px;
+  height: 2px;
+  background-color: var(--black);
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  transition: width 0.3s;
+}
+
+@media (max-width: 800px) {
+  .header__nav {
+    display: none;
   }
 
-  @media (max-width:480px){
-    #header{
-      h1{
-        font-size: 30px;
-      }
-
-      nav{
-        .nav-buttons{
-          gap:20px;
-        }
-      }
-    }
+  .header__nav.show {
+    display: block;
   }
-  
+
+  .header__nav.show ul {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50px; /* 상단 위치를 조금 내려서 사이드바가 잘리지 않도록 조정 */
+    background-color: rgba(255, 255, 255, 0.8); /* 배경 투명도를 높여 더 잘 보이도록 */
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    min-width: 150px;
+    padding: 10px 0;
+    border-radius: 8px; /* 모서리를 둥글게 */
+  }
+
+  .header__nav.show li {
+    display: block;
+    text-align: right;
+  }
+
+  .header__nav.show li a {
+    display: inline-block;
+    padding: 10px;
+  }
+
+  .header__nav__mobile {
+    display: block;
+  }
+}
