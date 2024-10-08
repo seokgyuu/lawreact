@@ -4,26 +4,45 @@ import HomeView from "./views/Homeview";
 import LogoScreen from "./components/LogoScreen";
 
 const App = () => {
-  const [showLogoScreen , setShowLogoScreen] = useState(true);
+  const [showLogoScreen, setShowLogoScreen] = useState(true);
 
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      setShowLogoScreen(false);
-    },1500);
+  useEffect(() => {
+    const checkServerStartTime = async () => {
+      try {
+        const response = await fetch('/api/server-start-time');
+        const data = await response.json();
+        const serverStartTime = new Date(data.startTime);
+        const lastVisitTime = new Date(localStorage.getItem('lastVisitTime'));
 
-    return () => clearTimeout(timer);
-  },[]);
+        if (isNaN(lastVisitTime.getTime()) || serverStartTime > lastVisitTime) {
+          const timer = setTimeout(() => {
+            setShowLogoScreen(false);
+            localStorage.setItem('lastVisitTime', new Date().toISOString());
+          }, 1500);
+
+          return () => clearTimeout(timer);
+        } else {
+          setShowLogoScreen(false);
+        }
+      } catch (error) {
+        console.error('Error checking server start time:', error);
+        setShowLogoScreen(false);
+      }
+    };
+
+    checkServerStartTime();
+  }, []);
 
   return (
-      <BrowserRouter>
-        {showLogoScreen?(
-          <LogoScreen/>
-        ):(
+    <BrowserRouter>
+      {showLogoScreen ? (
+        <LogoScreen />
+      ) : (
         <Routes>
-            <Route path="/" element={<HomeView/>}/>
+          <Route path="/" element={<HomeView />} />
         </Routes>
-        )}
-      </BrowserRouter>
+      )}
+    </BrowserRouter>
   );
 };
 
