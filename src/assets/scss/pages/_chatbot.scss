@@ -1,81 +1,83 @@
 #Chatbot {
-    position: absolute;
-    top: 100px; /* Header 높이 */
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    height: calc(100vh - 100px); /* 전체 화면에서 Header 높이 제외 */
-    background-color: white; /* 단순 배경 */
-    overflow: hidden;
-  
-    /* 채팅 로그 */
-    #chat-log {
+  position: absolute;
+  top: 100px; /* Header 높이 */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  height: calc(100vh - 100px); /* 전체 화면에서 Header 높이 제외 */
+  background-color: white; /* 단순 배경 */
+  overflow: hidden;
+
+  /* 채팅 로그 */
+  #chat-log {
       flex-grow: 1;
-      overflow-y: auto;
+      overflow-y: auto; /* 스크롤 가능하도록 설정 */
       padding: 15px;
       font-size: 15px;
       line-height: 1.5;
-      background-color: white; /* 전체 배경과 동일하게 유지 */
+      background-color: white;
       margin-bottom: 20px;
-  
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; 
+
       .user-message, .ai-message {
-        margin-bottom: 10px;
-        padding: 8px 12px;
-        border-radius: 20px;
-        max-width: 60%;
-        word-wrap: break-word;
+          margin-bottom: 10px;
+          padding: 8px 12px;
+          border-radius: 20px;
+          max-width: 60%;
+          word-wrap: break-word;
       }
-  
+
       .user-message {
-        align-self: flex-end;
-        background-color: #d1e7dd;
-        text-align: right;
+          align-self: flex-end;
+          background-color: #d1e7dd;
+          text-align: right;
       }
-  
+
       .ai-message {
-        align-self: flex-start;
-        background-color: #f1f1f1;
-        text-align: left;
+          align-self: flex-start;
+          background-color: #f1f1f1;
+          text-align: left;
       }
-    }
-  
-    /* 메시지 입력 폼 */
-    form {
+  }
+
+  /* 메시지 입력 폼 */
+  form {
       display: flex;
       padding: 10px;
       background-color: white;
       border-top: 1px solid #ddd;
-  
+
       textarea {
-        flex-grow: 1;
-        padding: 10px;
-        border: none;
-        border-radius: 20px;
-        background-color: #f1f1f1;
-        font-size: 14px;
-        resize: none;
-        outline: none;
-        height: 40px;
+          flex-grow: 1;
+          padding: 10px;
+          border: none;
+          border-radius: 20px;
+          background-color: #f1f1f1;
+          font-size: 14px;
+          resize: none;
+          outline: none;
+          height: 40px;
       }
-  
+
       button {
-        margin-left: 10px;
-        padding: 10px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 20px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: #0056b3;
-        }
+          margin-left: 10px;
+          padding: 10px 15px;
+          background-color: #000000;
+          color: white;
+          border: none;
+          border-radius: 20px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+              background-color: #020202;
+          }
       }
-    }
   }
-  
+}
