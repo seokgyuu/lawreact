@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import ChatBot from '../components/ChatBot'; 
-import Comant1 from '../components/Comant1'; 
 import axios from "axios"; 
 import { v4 as uuid4 } from "uuid";
 
@@ -29,8 +28,7 @@ const HomeView = () => {
 
     return (
         <>
-            <Header addMessage={addMessage} /> {/* addMessage를 prop으로 전달 */}
-            <Comant1 addMessage={addMessage} /> {/* Comant1에도 동일하게 전달 */}
+            <Header addMessage={addMessage} /> 
             <ChatBot chatLog={chatbotMessages} addMessage={addMessage} />
         </>
     );

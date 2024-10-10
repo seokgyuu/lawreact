@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { TypeAnimation } from 'react-type-animation';
 
-const ChatBot2 = ({ chatLog, addMessage, aiResponding }) => {
+const ChatBot3 = ({ chatLog, addMessage, aiResponding }) => {
     const [userInput, setUserInput] = useState("");
     const chatLogRef = useRef(null); // chat log에 대한 참조 생성
     const [isUserScrolling, setIsUserScrolling] = useState(false); // 사용자가 스크롤하는지 여부를 추적
@@ -81,4 +81,4 @@ const ChatBot2 = ({ chatLog, addMessage, aiResponding }) => {
     );
 };
 
-export default ChatBot2;
+export default ChatBot3;
