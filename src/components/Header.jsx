@@ -22,7 +22,7 @@ const Header = () => {
             }
         ];
    
-}  else if(location.pathname === "/home2"){
+    }else if(location.pathname === "/home2"){
     headerNav =[
         {
             title: "ChatBot2",
