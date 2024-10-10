@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import ChatBot from '../components/ChatBot'; 
+import Comant1 from '../components/Comant1'; 
 import axios from "axios"; 
 import { v4 as uuid4 } from "uuid";
 
 const HomeView = () => {
     const [chatbotMessages, setChatbotMessages] = useState([]);
     const [sessionId, setSessionId] = useState("");
-    const [historyVisible, setHistoryVisible] = useState(false);
 
     useEffect(() => {
         setSessionId(uuid4());
     }, []);
 
-    const sendMessageToChatbot = async (msg) => {
+    const addMessage = async (msg) => {
         setChatbotMessages(prevMessages => [...prevMessages, { sender: "사용자", message: msg }]);
 
         try {
@@ -27,14 +27,11 @@ const HomeView = () => {
         }
     };
 
-    const toggleHistory =() =>{
-        setHistoryVisible(!historyVisible)
-    }
-
     return (
         <>
-            <Header /> 
-            <ChatBot chatLog={chatbotMessages} addMessage={sendMessageToChatbot} /> {/* 항상 렌더링 */}
+            <Header addMessage={addMessage} /> {/* addMessage를 prop으로 전달 */}
+            <Comant1 addMessage={addMessage} /> {/* Comant1에도 동일하게 전달 */}
+            <ChatBot chatLog={chatbotMessages} addMessage={addMessage} />
         </>
     );
 };

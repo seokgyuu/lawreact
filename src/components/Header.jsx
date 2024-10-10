@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CalculatorOutlined, CommentOutlined, AppstoreOutlined, MenuOutlined } from "@ant-design/icons";
+import { CommentOutlined, AppstoreOutlined, MenuOutlined } from "@ant-design/icons";
 
 const headerNav = [
     {
@@ -8,13 +8,8 @@ const headerNav = [
         icon: CommentOutlined
     },
     {
-        title: "Cal",
-        url: "#Cal",
-        icon: CalculatorOutlined
-    },
-    {
-        title: "기능3",
-        url: "#Comant3",
+        title: "기능",
+        url: "#Comant",
         icon: AppstoreOutlined
     }
 ];
@@ -30,7 +25,7 @@ const Header = () => {
         <header className="header">
             <div className="header__inner">
                 <div className="header__logo">
-                    <a href="/">
+                    <a href="/home">
                         <h1>team2</h1>
                     </a>
                 </div>

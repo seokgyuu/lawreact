@@ -1,0 +1,65 @@
+.selection-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    flex-wrap:nowrap;
+  }
+  
+  .section {
+    flex: 1 1 33.33%; /* 각 섹션이 30% 너비로 균등하게 배치되도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: white;
+    text-align: center;
+    height: 100%;
+    padding:0;
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .easy {
+    background-color: #ffffff; /* 초보자용 (Easy) 색상 */
+  }
+  
+  .hard {
+    background-color: #000000; /* 전문가용 (Hard) 색상 */
+  }
+  
+  .cal {
+    background-color: #2196f3; /* 계산용 (Cal) 색상 */
+  }
+  
+  /* 반응형 디자인 */
+  @media (max-width: 768px) {
+    .selection-container {
+      flex-direction: nowrap; 
+    }
+  
+    .section {
+      flex: 1 1 100%; /* 작은 화면에서는 각 섹션이 화면 너비 전체를 차지 */
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  }
+  
